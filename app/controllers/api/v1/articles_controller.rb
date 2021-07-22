@@ -4,8 +4,15 @@ class Api::V1::ArticlesController < ApplicationController
   # GET /articles
   def index
     @articles = Article.all
-
-    render json: @articles
+    @cust_articles = [];
+    @articles.each {|article|
+      @art = {
+        id: article.id,
+        title: article.title
+      }
+      @cust_articles << @art
+    }
+    render json: @cust_articles
   end
 
   # GET /articles/1
